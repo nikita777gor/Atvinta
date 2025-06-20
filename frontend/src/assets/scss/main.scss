@@ -1,0 +1,101 @@
+@import '@/assets/scss/base';
+@import '@/assets/scss/colors';
+@import '@/assets/scss/screenSizes';
+@import '@/assets/scss/text';
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin text($weight, $size, $leading) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+  line-height: $leading;
+}
+
+h1{
+  @include text($size: 56px, $weight: 600, $leading: 72px);
+  @media(max-width: $screen-lg){
+    @include text($weight: 600, $size: 48px, $leading: 56px)
+  }
+  @media(max-width: $screen-md){
+    @include text($weight: 600, $size: 32px, $leading: 48px)
+  }
+  @media(max-width: $screen-sm){
+    @include text($weight: 600, $size: 28px, $leading: 32px)
+  }
+}
+
+h2{
+  @include text ($weight: 600, $size: 32px, $leading: 40px);
+  @media(max-width: $screen-lg){
+    @include text($weight: 600, $size: 24px, $leading: 32px)
+  }
+}
+
+h3{
+  @include text ($weight: 600, $size: 32px, $leading: 40px);
+}
+
+.info-text{
+  @include text ($weight: 600, $size: 20px, $leading: 32px);
+  @media(max-width: $screen-lg){
+    @include text($weight: 600, $size: 18px, $leading: 24px)
+  }
+}
+
+.text{
+  @include text ($weight: 500, $size: 16px, $leading: 24px);
+
+  &-slate{
+    color: red;
+  }
+}
+
+.medium-text{
+  @include text ($weight: 500, $size: 14px, $leading: 20px);
+}
+
+.second-text{
+  @include text ($weight: 400, $size: 12px, $leading: 16px);
+}
+
+.text-white{
+  color: $color-text;
+}
+.text-slate{
+  color: $color-slate-text
+}
+
+.title{
+  margin-bottom: 60px;
+}
+.block{
+  margin-bottom: 100px;
+}
+
+.container{
+  width: 1016px;
+  margin: 0 auto;
+  @media (max-width: $screen-xl) {
+    width: 756px;
+  }
+  @media (max-width: $screen-lg) {
+    width: 496px;
+  }
+  @media (max-width: $screen-md) {
+    width: 236px;
+  }
+}
+
+.background{
+  background-image: radial-gradient(circle at 50% 30%, $color-bg1, $color-bg2);
+  width: 100%;
+  min-height: 100vh;
+  height: max-content;
+}
+
