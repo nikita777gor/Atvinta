@@ -1,27 +1,30 @@
 <script setup lang="ts">
 
+import Header from "@/components/ui/Header.vue";
+import Info from "@/components/info/Info.vue";
+import Wallet from "@/components/wallet/Wallet.vue";
+import Market from "@/components/market/Market.vue";
+import Storage from "@/components/storage/Storage.vue";
+import Production from "@/components/production/Production.vue";
+
 </script>
 
 <template>
   <div class="background">
     <div class="container">
-      <h1>Test</h1>
-      <h2>Test</h2>
-      <h3>Test</h3>
-      <p class="info-text">Test</p>
-      <p class="text">Test</p>
-      <p class="medium-text">Test</p>
-      <p class="second-text">Test</p>
+      <Header/>
+      <Info/>
+      <Wallet/>
+      <Market/>
+      <Storage/>
+      <Production/>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 
-$mainColor: #777777;
 
-.test{
-  color: $mainColor;
-}
+
 
 </style>
