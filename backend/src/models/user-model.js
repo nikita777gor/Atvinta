@@ -1,23 +1,21 @@
 import {Schema, model} from "mongoose";
 
+const userComponentSchema = new Schema({
+    componentId: {type: Schema.Types.ObjectId, required: true},
+    count: {type: Number, default: 0, min: 0},
+}, {_id: false})
+
 const UserSchema = new Schema({
     coins: {type: String, default: 0, max: 100},
-    storage: {
-        bioarmCount: {type: Number, default: 0},
-        microchipCount: {type: Number, default: 0},
-        soulCount: {type: Number, default: 0}
-    },
+    storage: [userComponentSchema],
     production: {
-        progress: {
-            bioarmCount: {type: Number, default: 0, max: 4},
-            microchipCount: {type: Number, default: 0, max: 4},
-            soulCount: {type: Number, default: 0, max: 1}
-        },
+        progress: [userComponentSchema],
         selectedRobot: {
-            type: {type: Number, default: 0, max: 1},
-            stabilizer: {type: Number, default: 0, max: 1},
+            type: {type: String, default: 'frontend'},
+            stabilizer: {type: Number, default: 'male'},
         }
 
     }
-
 })
+
+export const userModel = model('User', UserSchema);
