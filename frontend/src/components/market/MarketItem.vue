@@ -10,7 +10,7 @@ import Button from "@/components/ui/Button.vue";
       <p class="info-text">Биорука</p>
       <p class="text">Стоимость: 7 монет</p>
     </div>
-    <Button type="fill" disabled="false" color="orange">
+    <Button type="fill" :disabled="false" color="orange">
       <p class="text">Купить</p>
     </Button>
   </div>

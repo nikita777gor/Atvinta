@@ -6,6 +6,7 @@ import Wallet from "@/components/wallet/Wallet.vue";
 import Market from "@/components/market/Market.vue";
 import Storage from "@/components/storage/Storage.vue";
 import Production from "@/components/production/Production.vue";
+import RadioButton from "@/components/ui/RadioButton.vue";
 
 </script>
 
@@ -18,6 +19,14 @@ import Production from "@/components/production/Production.vue";
       <Market/>
       <Storage/>
       <Production/>
+
+      <RadioButton group="type">
+        <p class="second-text">Frontend</p>
+      </RadioButton>
+      <RadioButton group="type">
+        <p class="second-text">Frontend</p>
+      </RadioButton>
+
     </div>
   </div>
 </template>

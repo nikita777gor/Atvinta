@@ -53,7 +53,7 @@
   div{
     @include flex-col-gap(5px);
     p:nth-child(2){
-      color: $color-slate-text;
+      color: $color-slate;
     }
   }
 }
