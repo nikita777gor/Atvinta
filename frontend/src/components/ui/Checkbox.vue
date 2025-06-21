@@ -1,25 +1,23 @@
 <script setup lang="ts">
 
-defineProps<{
-  group: string
-}>()
-
 </script>
 
 <template>
-  <label class="radio">
-    <input :name="group" class="radio-input" type="radio">
-    <span class="radio-text">
+
+  <label class="checkbox">
+    <input :name="group" class="checkbox-input" type="checkbox">
+    <span class="checkbox-text">
       <slot/>
     </span>
   </label>
+
 </template>
 
 <style scoped lang="scss">
 
 @import "@/assets/scss/main.scss";
 
-.radio{
+.checkbox{
   width: fit-content;
   @include flex-center;
   &-text{
@@ -31,7 +29,6 @@ defineProps<{
     width: 24px;
     height: 24px;
     background: transparent;
-    border-radius: 100%;
     border:solid 2px $color-slate;
 
     &::after{
@@ -40,15 +37,17 @@ defineProps<{
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 0;
-      height: 0;
-      border-radius: 100%;
-      background-color: $color-orange;
-      transition: 250ms;
+      width: 0px;
+      height: 0px;
     }
     &:checked::after{
+      transition: 200ms;
       width: 16px;
       height: 16px;
+      background-image: url("/icons/check.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
     }
     &:hover, &:disabled{
       transition: 100ms;

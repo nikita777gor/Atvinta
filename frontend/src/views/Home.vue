@@ -7,6 +7,7 @@ import Market from "@/components/market/Market.vue";
 import Storage from "@/components/storage/Storage.vue";
 import Production from "@/components/production/Production.vue";
 import RadioButton from "@/components/ui/RadioButton.vue";
+import Checkbox from "@/components/ui/Checkbox.vue";
 
 </script>
 
@@ -26,6 +27,10 @@ import RadioButton from "@/components/ui/RadioButton.vue";
       <RadioButton group="type">
         <p class="second-text">Frontend</p>
       </RadioButton>
+
+      <Checkbox>
+        <p class="second-text">По 5 монет</p>
+      </Checkbox>
 
     </div>
   </div>
