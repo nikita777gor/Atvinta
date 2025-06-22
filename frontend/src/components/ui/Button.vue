@@ -6,9 +6,6 @@ defineProps<{
   color: 'blue' | 'orange',
 }>()
 
-const emit = defineEmits<{
-  (e: 'event'): void
-}>();
 
 </script>
 
@@ -21,7 +18,6 @@ const emit = defineEmits<{
     orange: color === 'orange'
     }"
             :disabled="disabled"
-            @click="$emit('event')"
     >
       <slot/>
     </button>
