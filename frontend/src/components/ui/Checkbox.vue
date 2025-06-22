@@ -1,11 +1,13 @@
 <script setup lang="ts">
 
+const model = defineModel<boolean>();
+
 </script>
 
 <template>
 
   <label class="checkbox">
-    <input :name="group" class="checkbox-input" type="checkbox">
+    <input v-model="model" class="checkbox-input" type="checkbox">
     <span class="checkbox-text">
       <slot/>
     </span>
@@ -19,11 +21,22 @@
 
 .checkbox{
   width: fit-content;
+  cursor: pointer;
   @include flex-center;
+
+  &:hover{
+    input{
+      transition: 100ms;
+      border-color: $color-disabled;
+    }
+  }
+
   &-text{
     padding-left: 8px;
   }
   &-input{
+    cursor: pointer;
+    transition: 100ms;
     appearance: none;
     position: relative;
     width: 24px;
@@ -49,8 +62,7 @@
       background-position: center;
       background-size: cover;
     }
-    &:hover, &:disabled{
-      transition: 100ms;
+    &:disabled{
       border-color: $color-disabled;
     }
   }

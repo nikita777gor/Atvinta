@@ -10,6 +10,7 @@
   line-height: $leading;
 }
 
+//Доработать миксины
 @mixin flex-items-center{
   display: flex;
   align-items: center;

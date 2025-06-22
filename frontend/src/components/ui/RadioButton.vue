@@ -22,10 +22,20 @@ defineProps<{
 .radio{
   width: fit-content;
   @include flex-center;
+  cursor: pointer;
+
+  &:hover{
+    input{
+      transition: 100ms;
+      border-color: $color-disabled;
+    }
+  }
+
   &-text{
     padding-left: 8px;
   }
   &-input{
+    cursor: pointer;
     appearance: none;
     position: relative;
     width: 24px;
@@ -50,8 +60,7 @@ defineProps<{
       width: 16px;
       height: 16px;
     }
-    &:hover, &:disabled{
-      transition: 100ms;
+    &:disabled{
       border-color: $color-disabled;
     }
   }

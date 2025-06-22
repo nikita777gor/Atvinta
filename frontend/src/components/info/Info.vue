@@ -8,7 +8,7 @@
     <div class="info">
       <div class="info-text">
         <h1 class="info-title">Фабрика по производству биороботов</h1>
-        <p class="info-text text-slate">класса «монитор-кресло»</p>
+        <p class="info-description text-slate">класса «монитор-кресло»</p>
       </div>
       <img class="info-image" src="/info/image.png" alt="robots"/>
     </div>
@@ -19,11 +19,25 @@
 <style scoped lang="scss">
 
 @import "@/assets/scss/main.scss";
+@import "@/assets/scss/screenSizes";
 
 .info{
   @include flex-between;
 
+  @media (max-width: $screen-lg){
+    @include flex-col-gap(30px);
+    &-title{
+      text-align: center;
+    }
+    &-description{
+      display: none;
+    }
+  }
+
   &-image{
+    @media (max-width: $screen-2xl){
+      width: 236px;
+    }
     width: 320px;
   }
   &-title{

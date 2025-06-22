@@ -1,0 +1,22 @@
+@import 'screenSizes';
+
+$container-max: 1016;
+$container-2xl: 760;
+$container-xl: 648;
+$container-lg: 280;
+
+$containers-list: $container-max, $container-2xl, $container-xl, $container-lg;
+
+.container{
+  margin: 0 auto;
+  width: #{$container-max}px;
+  @media (max-width: $screen-2xl) {
+    width: #{$container-2xl}px;
+  }
+  @media (max-width: $screen-xl) {
+    width: #{$container-xl}px;
+  }
+  @media (max-width: $screen-lg) {
+    width: #{$container-lg}px;
+  }
+}

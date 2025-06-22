@@ -1,4 +1,6 @@
-$screen-xl: 1024px;
-$screen-lg: 768px;
-$screen-md: 480px;
-$screen-sm: 320px;
+//Размеры экранов по max-width(размер 1920 изменен на 1900 из за того что некоторые браузеры воспринимают мониторы 1920 на пару пикселей меньше (Например Safari))
+$screen-2xl: 1900px;
+$screen-xl: 1023px;
+$screen-lg: 767px;
+$screen-md: 439px;
+$screen-sm: 319px;

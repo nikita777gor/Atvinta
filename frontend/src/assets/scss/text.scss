@@ -1,34 +1,34 @@
 @import '@/assets/scss/colors.scss';
 @import "@/assets/scss/mixins";
-@import "@/assets/scss/screenSizes.scss";
+@import "@/assets/scss/screenSizes";
 
 h1{
   @include text($size: 56px, $weight: 600, $leading: 72px);
-  @media(max-width: $screen-lg){
+  @media(max-width: $screen-xl){
     @include text($weight: 600, $size: 48px, $leading: 56px)
   }
-  @media(max-width: $screen-md){
+  @media(max-width: $screen-lg){
     @include text($weight: 600, $size: 32px, $leading: 48px)
   }
-  @media(max-width: $screen-sm){
+  @media(max-width: $screen-md){
     @include text($weight: 600, $size: 28px, $leading: 32px)
   }
 }
 
 h2{
   @include text ($weight: 600, $size: 32px, $leading: 40px);
-  @media(max-width: $screen-lg){
+  @media(max-width: $screen-xl){
     @include text($weight: 600, $size: 24px, $leading: 32px)
   }
 }
 
 h3{
-  @include text ($weight: 600, $size: 32px, $leading: 40px);
+  @include text ($weight: 600, $size: 24px, $leading: 32px);
 }
 
 .info-text{
   @include text ($weight: 600, $size: 20px, $leading: 32px);
-  @media(max-width: $screen-lg){
+  @media(max-width: $screen-xl){
     @include text($weight: 600, $size: 18px, $leading: 24px)
   }
 }

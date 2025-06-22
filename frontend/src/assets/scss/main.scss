@@ -1,27 +1,14 @@
 @import '@/assets/scss/base';
 @import '@/assets/scss/colors';
-@import '@/assets/scss/screenSizes';
+@import 'screenSizes';
 @import '@/assets/scss/text';
 @import '@/assets/scss/mixins';
+@import '@/assets/scss/container';
 
 .block{
   padding-bottom: 100px;
   &-title{
     margin-bottom: 60px;
-  }
-}
-
-.container{
-  width: 1016px;
-  margin: 0 auto;
-  @media (max-width: $screen-xl) {
-    width: 756px;
-  }
-  @media (max-width: $screen-lg) {
-    width: 496px;
-  }
-  @media (max-width: $screen-md) {
-    width: 236px;
   }
 }
 

@@ -25,6 +25,9 @@ import Button from "@/components/ui/Button.vue";
 
   &-logo{
     height: 48px;
+    @media (max-width: $screen-lg){
+      display: none;
+    }
   }
 }
 
