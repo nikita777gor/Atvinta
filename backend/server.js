@@ -4,7 +4,6 @@ import env from 'dotenv';
 import mongoose from "mongoose";
 
 import {router} from './src/router/router.js';
-import {errorMessages} from "./src/messages/api-messages.js";
 import {errorMiddleware} from "./src/middlewares/error-middleware.js";
 
 const app = express();
