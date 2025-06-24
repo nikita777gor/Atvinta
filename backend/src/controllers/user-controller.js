@@ -1,13 +1,14 @@
+import {responseHelper} from "../helpers/response-helper.js";
 import {userService} from "../services/user-service.js";
-import {tokenService} from "../services/token-service.js";
-import {ApiError} from "../exceptions/api-error.js";
+import {API_MESSAGES} from "../messages/api-messages.js";
+
 
 class UserController {
 
     async authUser(req, res, next){
         try{
             const userToken = await userService.createUser();
-            res.status(200).json(userToken);
+            responseHelper(res, userToken, API_MESSAGES.success.user.authUser);
         }catch(err){
             next(err);
         }
@@ -15,7 +16,7 @@ class UserController {
     async getUser(req, res, next){
         try{
             const user = await userService.getUser(req.body.user.id);
-            res.status(200).json(user);
+            responseHelper(res, user, API_MESSAGES.success.user.getUser);
         }catch(err){
             next(err);
         }
