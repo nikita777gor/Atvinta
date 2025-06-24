@@ -4,6 +4,8 @@ import env from 'dotenv';
 import mongoose from "mongoose";
 
 import {router} from './src/router/router.js';
+import {errorMessages} from "./src/messages/api-messages.js";
+import {errorMiddleware} from "./src/middlewares/error-middleware.js";
 
 const app = express();
 env.config();
@@ -14,7 +16,11 @@ const use = () => {
     app.use(express.json());
     app.use(cors());
 
-    app.use('api/project', router)
+    app.use('/api/project', router)
+
+
+    //Middleware, обрабатывающий ошибки
+    app.use(errorMiddleware);
 }
 
 const start = async () => {
