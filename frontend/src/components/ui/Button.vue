@@ -71,12 +71,14 @@ defineProps<{
         border-color: transparent;
         background-image: none;
         background-color: $color2;
-        filter: drop-shadow(0px 1px 18px rgba($color1, 0.4));
+        filter: drop-shadow(0px 0px 18px rgba($color1, 0.4));
+        will-change: transform;
         :slotted(*){
           color: $color-bg2;
         }
       }
       &:active{
+        filter: none;
         background-color: transparent;
         :slotted(*){
           color: $color1;
@@ -120,14 +122,6 @@ button {
   }
 
 }
-
-
-
-
-
-
-
-
 
 
 

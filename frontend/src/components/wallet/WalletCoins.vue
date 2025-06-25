@@ -28,9 +28,13 @@ const coinsStore = useCoinsStore();
 
 //Миксин смещения монет и их переноса на другую строчку в зависимости от размеров экрана
 @mixin coin-position($container, $i){
-  $left: ($i * 8) - 8;
+  $coinWidth: 8;
+  $left: ($i * $coinWidth) - $coinWidth;
   @if $left >= $container{
-    left: #{$left - floor($left / $container) * $container}px;
+    //Приравнивание container, чтобы оно делилось на ширину коина без остатка(позволяет сделать корректный отступ с новой строки)
+    $multipleContainer: ceil($container / $coinWidth) * $coinWidth;
+
+    left: #{$left - floor($left / $multipleContainer) * $multipleContainer}px;
     top: #{floor($left / $container) * 28}px
   }@else{
     left: #{$left}px;

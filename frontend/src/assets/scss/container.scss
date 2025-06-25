@@ -1,11 +1,10 @@
 @import 'screenSizes';
 
 $container-max: 1016;
-$container-2xl: 760;
-$container-xl: 648;
+$container-2xl: 756;
+$container-xl: 650;
 $container-lg: 280;
 
-$containers-list: $container-max, $container-2xl, $container-xl, $container-lg;
 
 .container{
   margin: 0 auto;

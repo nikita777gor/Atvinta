@@ -6,8 +6,15 @@ import Wallet from "@/components/wallet/Wallet.vue";
 import Market from "@/components/market/Market.vue";
 import Storage from "@/components/storage/Storage.vue";
 import Production from "@/components/production/Production.vue";
-import RadioButton from "@/components/ui/RadioButton.vue";
-import Checkbox from "@/components/ui/Checkbox.vue";
+
+import {onMounted} from "vue";
+import {usePreloaderStore} from "@/stores/PreloderStore.ts";
+
+const preloaderStore = usePreloaderStore();
+
+onMounted(() => {
+  // preloaderStore.changePreloaderStatus()
+})
 
 </script>
 
@@ -20,17 +27,6 @@ import Checkbox from "@/components/ui/Checkbox.vue";
       <Market/>
       <Storage/>
       <Production/>
-
-      <RadioButton group="type">
-        <p class="second-text">Frontend</p>
-      </RadioButton>
-      <RadioButton group="type">
-        <p class="second-text">Frontend</p>
-      </RadioButton>
-
-      <Checkbox>
-        <p class="second-text">По 5 монет</p>
-      </Checkbox>
 
     </div>
   </div>

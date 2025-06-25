@@ -5,6 +5,13 @@
 @import '@/assets/scss/mixins';
 @import '@/assets/scss/container';
 
+//@forward "mixins";
+//@forward "screenSizes";
+//@forward "colors";
+//@forward "text";
+//@forward "mixins";
+//@forward "container";
+
 .block{
   padding-bottom: 100px;
   &-title{
