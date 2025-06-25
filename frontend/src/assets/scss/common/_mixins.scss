@@ -1,3 +1,5 @@
+@use '@/assets/scss/common/variables' as *;
+
 //Базовые переиспользуемые миксины
 @mixin text($weight, $size, $leading) {
   font: {

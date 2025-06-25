@@ -15,7 +15,6 @@ import MarketItem from "@/components/market/MarketItem.vue";
 
 <style scoped lang="scss">
 
-@import "@/assets/scss/main.scss";
 
 .market-list {
   @include components-list();

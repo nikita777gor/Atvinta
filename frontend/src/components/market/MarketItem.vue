@@ -18,7 +18,6 @@ import Button from "@/components/ui/Button.vue";
 
 <style scoped lang="scss">
 
-@import "@/assets/scss/main.scss";
 
 .market-item{
   @include components-list-item();

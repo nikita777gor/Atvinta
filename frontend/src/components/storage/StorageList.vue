@@ -15,7 +15,6 @@ import StorageItem from "@/components/storage/StorageItem.vue";
 
 <style scoped lang="scss">
 
-@import "@/assets/scss/main.scss";
 
 .storage-list {
   @include components-list();

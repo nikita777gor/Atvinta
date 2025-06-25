@@ -20,7 +20,6 @@ import Button from "@/components/ui/Button.vue";
 
 <style scoped lang="scss">
 
-@import "@/assets/scss/main.scss";
 
 .storage-item {
   @include components-list-item();

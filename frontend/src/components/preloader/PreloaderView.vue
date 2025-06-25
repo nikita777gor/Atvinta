@@ -15,7 +15,6 @@ import PreloaderCubes from "@/components/preloader/PreloaderCubes.vue";
 
 <style scoped lang="scss">
 
-@import "@/assets/scss/main.scss";
 
 .preloader{
   &-wrapper{
