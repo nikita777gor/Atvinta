@@ -26,13 +26,14 @@ const coinsStore = useCoinsStore();
 //Миксин смещения монет и их переноса на другую строчку в зависимости от размеров экрана
 @mixin coin-position($container, $i){
   $coinWidth: 8;
+  $containerValue: $container / 1px;
   $left: ($i * $coinWidth) - $coinWidth;
-  @if $left >= $container{
+  @if $left >= $containerValue{
     //Приравнивание container, чтобы оно делилось на ширину коина без остатка(позволяет сделать корректный отступ с новой строки)
-    $multipleContainer: ceil($container / $coinWidth) * $coinWidth;
+    $multipleContainer: ceil($containerValue / $coinWidth) * $coinWidth;
 
     left: #{$left - floor($left / $multipleContainer) * $multipleContainer}px;
-    top: #{floor($left / $container) * 28}px
+    top: #{floor($left / $containerValue) * 28}px
   }@else{
     left: #{$left}px;
   }
@@ -58,23 +59,20 @@ const coinsStore = useCoinsStore();
     //Перебор монет и обращение к миксину смещения в зависимости от размеров экрана
     @for $i from 1 through 100{
       &-#{$i}{
-        @include coin-position($container-max, $i);
-        @media(max-width: $screen-2xl){
-          @include coin-position($container-2xl, $i);
+        @each $screen, $container in $containersMap {
+          @if($screen == 'max'){
+            @include coin-position($container, $i);
+          }@else{
+            @media (max-width: #{$screen}) {
+              @include coin-position($container, $i);
+            }
+          }
         }
-        @media(max-width: $screen-xl){
-          @include coin-position($container-xl, $i);
-        }
-        @media(max-width: $screen-lg){
-          @include coin-position($container-lg, $i);
-        }
+
+
       }
     }
   }
-}
-
-.test{
-  color: red;
 }
 
 </style>

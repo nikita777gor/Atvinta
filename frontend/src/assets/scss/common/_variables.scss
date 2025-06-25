@@ -13,16 +13,26 @@ $color-bg1: #26394D;
 $color-bg2: #212529;
 
 
-//Значение ширины контейнеров
-$container-max: 1016;
-$container-2xl: 756;
-$container-xl: 650;
-$container-lg: 280;
-
-
-//Ширина экранов
+//Ширина экранов(стилизация через media идет черех максимальные значения переменных)
 $screen-2xl: 1900px;
 $screen-xl: 1023px;
 $screen-lg: 767px;
 $screen-md: 439px;
 $screen-sm: 319px;
+
+
+//Значение ширины контейнеров
+$container-max: 1016px;
+$container-2xl: 756px;
+$container-xl: 650px;
+$container-lg: 280px;
+
+//Map-коллекция размеров экрана и контейнера для каждого размера
+$containersMap: (
+  max: 1016,
+  #{$screen-2xl}: 756px,
+  #{$screen-xl}: 650px,
+  #{$screen-lg}: 280px
+);
+
+

@@ -1,7 +1,7 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-// Общие устилитарные стили
+// Общие утилитарные стили
 .block{
   padding-bottom: 100px;
   &-title{
@@ -17,21 +17,21 @@
 
 .container{
   margin: 0 auto;
-  width: #{$container-max}px;
-  @media (max-width: $screen-2xl) {
-    width: #{$container-2xl}px;
-  }
-  @media (max-width: $screen-xl) {
-    width: #{$container-xl}px;
-  }
-  @media (max-width: $screen-lg) {
-    width: #{$container-lg}px;
+
+  @each $screen, $container in $containersMap {
+    @if($screen == 'max'){
+      width: #{$container}px;
+    }@else{
+      @media (max-width: #{$screen}) {
+        width: $container;
+      }
+    }
   }
 }
 
 
 
-// Утилитарные стили работы с текстом
+// Утилитарные стили для работы с текстом
 h1{
   @include text($size: 56px, $weight: 600, $leading: 72px);
   @media(max-width: $screen-xl){
