@@ -15,7 +15,6 @@ const preloaderStore = usePreloaderStore();
 
 <style lang="scss">
 
-
-
+//@use '@/assets/scss/styles' as *;
 
 </style>

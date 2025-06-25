@@ -17,8 +17,6 @@ const model = defineModel<boolean>();
 
 <style scoped lang="scss">
 
-@import "@/assets/scss/main.scss";
-
 .checkbox{
   width: fit-content;
   cursor: pointer;

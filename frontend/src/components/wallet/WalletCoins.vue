@@ -23,9 +23,6 @@ const coinsStore = useCoinsStore();
 
 <style scoped lang="scss">
 
-@import '@/assets/scss/main.scss';
-
-
 //Миксин смещения монет и их переноса на другую строчку в зависимости от размеров экрана
 @mixin coin-position($container, $i){
   $coinWidth: 8;
@@ -74,6 +71,10 @@ const coinsStore = useCoinsStore();
       }
     }
   }
+}
+
+.test{
+  color: red;
 }
 
 </style>

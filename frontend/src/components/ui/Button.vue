@@ -26,8 +26,6 @@ defineProps<{
 
 <style lang="scss" scoped>
 
-@import '@/assets/scss/main.scss';
-
 //Легко масштабируемая стилизация кнопок(если в будущем понадобиться добавить еще какой-либо вариант кнопки, это легко можно будет сделать)
 
 @mixin style-button($type, $color1, $color2, $style: 1){

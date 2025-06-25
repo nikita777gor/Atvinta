@@ -1,0 +1,61 @@
+//Базовые переиспользуемые миксины
+@mixin text($weight, $size, $leading) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+  line-height: $leading;
+}
+
+//Доработать миксины
+@mixin flex-items-center{
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center {
+  @include flex-items-center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  @include flex-items-center;
+  justify-content: space-between;
+
+}
+
+@mixin flex-gap($gap) {
+  @include flex-items-center;
+  gap: $gap
+}
+
+@mixin flex-col-gap($gap){
+  @include flex-gap($gap);
+  flex-direction: column;
+}
+
+
+//Переиспользуемые миксины для определенных фрагментов приложения
+@mixin components-list(){
+  @include flex-items-center();
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 40px;
+}
+
+@mixin components-list-item(){
+  @include flex-col-gap(34px);
+  image{
+    width: 100%;
+  }
+  div{
+    @include flex-col-gap(5px);
+    p:nth-child(2){
+      color: $color-slate;
+    }
+  }
+}
+
+@mixin preloader-color($color){
+  --uib-color: $color;
+}

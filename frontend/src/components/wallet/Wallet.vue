@@ -51,8 +51,6 @@ const computedLinkDisabled = computed(() => {
 
 <style scoped lang="scss">
 
-@import "@/assets/scss/main.scss";
-
 .wallet{
   &-coins-count{
     margin-bottom: 34px;

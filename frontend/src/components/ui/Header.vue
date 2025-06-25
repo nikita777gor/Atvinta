@@ -17,8 +17,6 @@ import Button from "@/components/ui/Button.vue";
 
 <style lang="scss" scoped>
 
-@import "@/assets/scss/main";
-
 .header{
   @include flex-between;
   padding: 48px 0;

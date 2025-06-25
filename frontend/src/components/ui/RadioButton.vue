@@ -17,7 +17,6 @@ defineProps<{
 
 <style scoped lang="scss">
 
-@import "@/assets/scss/main.scss";
 
 .radio{
   width: fit-content;

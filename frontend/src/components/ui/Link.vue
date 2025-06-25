@@ -15,7 +15,6 @@ defineProps<{
 
 <style scoped lang="scss">
 
-@import '@/assets/scss/main.scss';
 
 button{
   background-color: transparent;
