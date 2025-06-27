@@ -5,7 +5,7 @@ export const routes = [
     component: () => import ('@/views/Home.vue')
   },
   {
-    path: '/:pathMatch(.*)',
+    path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => import ('@/views/NotFound.vue'),
   }

@@ -13,7 +13,10 @@ const PORT = process.env.PORT || 5000;
 
 const use = () => {
     app.use(express.json());
-    app.use(cors());
+    app.use(cors({
+        origin: true,
+        credentials: true,
+    }));
 
     app.use('/api/project', router)
 

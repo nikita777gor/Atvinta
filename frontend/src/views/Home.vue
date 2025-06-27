@@ -8,12 +8,20 @@ import Storage from "@/components/storage/Storage.vue";
 import Production from "@/components/production/Production.vue";
 
 import {onMounted} from "vue";
-import {usePreloaderStore} from "@/stores/PreloderStore.ts";
+
+import {usePreloaderStore} from "@/stores/PreloaderStore.ts";
+import {useComponentsStore} from "@/stores/ComponentsStore.ts";
+import {useUserStore} from "@/stores/UserStore.ts";
+
 
 const preloaderStore = usePreloaderStore();
+const componentsStore = useComponentsStore();
+const userStore = useUserStore();
 
 onMounted(() => {
-  // preloaderStore.changePreloaderStatus()
+  preloaderStore.changePreloaderStatus(componentsStore.getMarketComponents().then(() => {
+    userStore.getUserData()
+  }));
 })
 
 </script>

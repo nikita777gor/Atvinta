@@ -1,15 +1,15 @@
-import {Schema, model} from "mongoose";
+import {model, Schema} from "mongoose";
 
-const ComponentSchema = new Schema({
+const UserSchema = new Schema({
     name: {type: String, required: true},
-    images: {
-        mainImg: {type: String, required: true},
-        selectedImg: {type: String, required: true},
-        inStockImg: {type: String, required: true},
-        outStockImg: {type: String, required: true}
+    image: {type: String, required: true},
+    icons: {
+        selectedIcon: {type: String, required: true},
+        inStockIcon: {type: String, required: true},
+        outStockIcon: {type: String, required: true},
     },
     buyPrice: {type: Number, required: true},
-    sellPrice: {type: Number, required: true}
-})
+    sellPrice: {type: Number, required: true},
+});
 
-export const componentModel = model("Component", ComponentSchema)
+export const componentModel = model('Component', UserSchema);

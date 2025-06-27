@@ -2,7 +2,7 @@
 import { RouterView } from 'vue-router'
 import PreloaderView from "@/components/preloader/PreloaderView.vue";
 
-import {usePreloaderStore} from "@/stores/PreloderStore.ts";
+import {usePreloaderStore} from "@/stores/PreloaderStore.ts";
 
 const preloaderStore = usePreloaderStore();
 
@@ -15,6 +15,6 @@ const preloaderStore = usePreloaderStore();
 
 <style lang="scss">
 
-//@use '@/assets/scss/styles' as *;
+@use '@/assets/scss/styles' as *;
 
 </style>

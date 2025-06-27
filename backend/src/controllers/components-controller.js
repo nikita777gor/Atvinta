@@ -1,14 +1,20 @@
 import {responseHelper} from "../helpers/response-helper.js";
-import {componentsService} from "../services/components-service.js";
 import {API_MESSAGES} from "../messages/api-messages.js";
+
+import {componentsService} from "../services/components-service.js";
 
 class ComponentsController {
 
-    async getAllComponents(req, res, next){
-        const components = await componentsService.getAllComponents();
-        responseHelper(res, components, API_MESSAGES.success.components.getComponents);
+    async getComponents(req, res, next){
+        try{
+            const components = await componentsService.getComponents();
+            responseHelper(res, components, API_MESSAGES.success.components.get);
+        }catch(err){
+            next(err);
+        }
     }
+
 
 }
 
-export const componentsController = new ComponentsController();
+export const marketController = new ComponentsController();

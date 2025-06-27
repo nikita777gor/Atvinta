@@ -2,22 +2,23 @@ import {API_MESSAGES} from "../messages/api-messages.js";
 
 export class ApiError extends Error {
 
-    status;
     errors;
 
-    constructor(status, message, errors = []){
+    constructor(status, message){
         super(message);
         this.status = status;
-        this.errors = errors;
     }
 
-    static BadRequest(status, message, errors = []){
-        return new ApiError(400, message, errors);
+    static BadRequest(message){
+        return new ApiError(400, message);
     }
 
     static Unauthorized(){
-        console.log(Error);
-        return new ApiError(401, API_MESSAGES.error.user.userNotAuth)
+        return new ApiError(401, API_MESSAGES.error.main.unauthorized)
+    }
+
+    static NotFound(){
+        return new ApiError(404, API_MESSAGES.error.main.notFound)
     }
 
 }

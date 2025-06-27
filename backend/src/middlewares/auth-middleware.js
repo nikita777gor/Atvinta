@@ -15,7 +15,6 @@ export const authMiddleware = async (req, res, next) => {
         }
 
         const tokenFromDb = await tokenModel.findOne({token: parseToken});
-        console.log(tokenFromDb)
         if(!tokenFromDb){
             throw ApiError.Unauthorized()
         }

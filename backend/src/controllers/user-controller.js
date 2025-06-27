@@ -7,8 +7,8 @@ class UserController {
 
     async authUser(req, res, next){
         try{
-            const userToken = await userService.createUser();
-            responseHelper(res, userToken, API_MESSAGES.success.user.authUser);
+            const userToken = await userService.authUser();
+            responseHelper(res, userToken, API_MESSAGES.success.user.auth);
         }catch(err){
             next(err);
         }
@@ -16,7 +16,7 @@ class UserController {
     async getUser(req, res, next){
         try{
             const user = await userService.getUser(req.body.user.id);
-            responseHelper(res, user, API_MESSAGES.success.user.getUser);
+            responseHelper(res, user, API_MESSAGES.success.user.get);
         }catch(err){
             next(err);
         }
