@@ -10,8 +10,8 @@ class TokenService {
 
     async createToken(userId){
         const generatedToken = await this.generateToken();
-        const token = await tokenModel.create({userId: userId, token: generatedToken});
-        return token;
+        const user = await tokenModel.create({userId: userId, token: generatedToken});
+        return {token: user.token};
     }
 }
 

@@ -1,20 +1,20 @@
 import {Schema, model} from "mongoose";
 
 const robotComponentSchema = new Schema({
-    componentId: {type: Schema.Types.ObjectId, ref: 'Component', required: true},
-    componentCount: {type: Number, required: true}
-})
+    component: {type: Schema.Types.ObjectId, ref: 'Component', required: true},
+    count: {type: Number, default: 1, min: 1},
+}, {_id: false})
 
 const RobotSchema = new Schema({
-    type: {type: String, required: true},
-    stable: {type: String, required: true},
+    type: {type: String, default: 'frontend'},
+    stabilizer: {type: String, default: 'male'},
     components: [robotComponentSchema],
     images: {
-        createdtImg: {type: String, required: true},
+        createdImg: {type: String, required: true},
         canCreateImg: {type: String, required: true},
         forbiddenCreateImg: {type: String, required: true}
     },
     createPrice: {type: Number, required: true}
 })
 
-export const robotSchema = model("Robot", RobotSchema)
+export const robotModel = model("Robot", RobotSchema)

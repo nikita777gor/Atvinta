@@ -9,6 +9,7 @@ import {userController} from "../controllers/user-controller.js";
 import {marketController} from "../controllers/components-controller.js";
 import {storageController} from "../controllers/userComponents-controller.js";
 import {coinsController} from "../controllers/coins-controller.js";
+import {productionController} from "../controllers/production-controller.js";
 
 
 export const router = new Router();
@@ -33,6 +34,26 @@ router.delete('/user/components/:componentId',
     param('componentId').isMongoId(),
     authMiddleware,
     storageController.sellUserComponent);
+
+router.put('/user/production/robot',
+    body('type').isString(),
+    body('stabilizer').isString(),
+    authMiddleware,
+    productionController.changeSelectedRobot)
+
+router.post('/user/production/robot',
+    authMiddleware,
+    productionController.createProductionRobot)
+
+router.post('/user/production/components/:componentId',
+    param('componentId').isMongoId(),
+    authMiddleware,
+    productionController.addProductionComponent)
+
+router.delete('/user/production/components/:componentId',
+    param('componentId').isMongoId(),
+    authMiddleware,
+    productionController.removeProductionComponent)
 
 
 router.all('/{*any}', (req, res, next) => {

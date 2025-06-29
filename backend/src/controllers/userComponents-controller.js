@@ -13,7 +13,7 @@ class UserComponentsController {
         try{
 
             const validationErrors = validationResult(req).errors;
-            if(validationErrors[0]){
+            if(validationErrors.length){
                 throw ApiError.BadRequest(API_MESSAGES.error.userComponents.buyValidation);
             }
 
@@ -27,7 +27,7 @@ class UserComponentsController {
     async sellUserComponent(req, res, next){
         try{
             const validationErrors = validationResult(req).errors;
-            if(validationErrors[0]){
+            if(validationErrors.length){
                 throw ApiError.BadRequest(API_MESSAGES.error.userComponents.sellValidation);
             }
             const component = await userComponentsService.sellUserComponent(req.body.user.id, req.params.componentId);

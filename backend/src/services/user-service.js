@@ -10,13 +10,14 @@ class UserService {
 
     async getUser(id){
         const user = await userModel.findById(id).lean()
-            // .populate({
-            //     path: 'storage.component',
-            //     select: 'name image sellPrice'
-            // })
+            .populate({
+                path: 'production.robot',
+            })
+
         if(!user){
             throw ApiError.BadRequest(API_MESSAGES.error.user.auth);
         }
+
         const userComponents = await userComponentsService.fillEmptyUserComponents(id, user.storage);
         user.storage = userComponents;
         return user;
