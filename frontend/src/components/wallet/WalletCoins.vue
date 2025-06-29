@@ -3,7 +3,6 @@
 import WalletCoinsItem from "@/components/wallet/WalletCoinsItem.vue";
 
 import {useCoinsStore} from "@/stores/CoinsStore.ts";
-import {computed} from "vue";
 
 const coinsStore = useCoinsStore();
 
@@ -23,17 +22,19 @@ const coinsStore = useCoinsStore();
 
 <style scoped lang="scss">
 
+@use 'sass:math';
+
 //Миксин смещения монет и их переноса на другую строчку в зависимости от размеров экрана
 @mixin coin-position($container, $i){
   $coinWidth: 8;
-  $containerValue: $container / 1px;
+  $containerValue: calc($container / 1px);
   $left: ($i * $coinWidth) - $coinWidth;
   @if $left >= $containerValue{
     //Приравнивание container, чтобы оно делилось на ширину коина без остатка(позволяет сделать корректный отступ с новой строки)
-    $multipleContainer: ceil($containerValue / $coinWidth) * $coinWidth;
+    $multipleContainer: math.ceil(calc($containerValue / $coinWidth)) * $coinWidth;
 
-    left: #{$left - floor($left / $multipleContainer) * $multipleContainer}px;
-    top: #{floor($left / $containerValue) * 28}px
+    left: #{$left - math.floor(calc($left / $multipleContainer)) * $multipleContainer}px;
+    top: #{math.floor(calc($left / $containerValue)) * 28}px
   }@else{
     left: #{$left}px;
   }

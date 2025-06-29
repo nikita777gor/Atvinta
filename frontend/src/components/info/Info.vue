@@ -32,10 +32,10 @@
   }
 
   &-image{
+    width: 320px;
     @media (max-width: $screen-2xl){
       width: 236px;
     }
-    width: 320px;
   }
   &-title{
     margin-bottom: 24px;

@@ -28,98 +28,132 @@ defineProps<{
 
 //Легко масштабируемая стилизация кнопок(если в будущем понадобиться добавить еще какой-либо вариант кнопки, это легко можно будет сделать)
 
-@mixin style-button($type, $color1, $color2, $style: 1){
-  @if($type == 'fill'){
-    background-color: $color1;
-    &:hover{
-      background-color: $color2;
-    }
-    &:active{
-      background-color: $color1;
-    }
 
+@mixin button-style($type, $color){
+  @if($type == 'fill'){
     &:disabled {
       background-color: $color-disabled;
       :slotted(*) {
         color: $color-disabled-text;
       }
     }
+
+    @if($color == 'orange') {@include fill-button1($color-orange, $color-light-orange);}
+
   }
   @else if($type == 'stroke'){
     background-color: transparent;
-
-    @if($style == 1){
-      border: solid 2px $color1;
-      &:hover{
-        transition: 0.25s;
-        border-color: transparent;
-        background-color: $color1;
-      }
-      &:active{
-        border-color: transparent;
-        background-color: $color2;
-      }
-    }@else if($style == 2){
-      border: solid 2px $color1;
-      :slotted(*) {
-        color: $color1;
-      }
-
-      &:hover{
-        border-color: transparent;
-        background-image: none;
-        background-color: $color2;
-        filter: drop-shadow(0px 0px 18px rgba($color1, 0.4));
-        will-change: transform;
-        :slotted(*){
-          color: $color-bg2;
-        }
-      }
-      &:active{
-        filter: none;
-        background-color: transparent;
-        :slotted(*){
-          color: $color1;
-        }
-        border: solid 2px $color1;
-      }
-    }
-
+    border: solid 2px $color;
     &:disabled{
       border-color: $color-disabled;
       :slotted(*){
         color: $color-disabled;
       }
     }
+
+    @if($color == 'orange') {@include stroke-button1($color-orange, $color-light-orange)};
+    @if($color == 'blue') {@include stroke-button2($color-blue, $color-light-blue)};
+
   }
 }
 
+//Шаблоны стилей для разного типа кнопок(вынесено отдельно для наибольшей масштабируемости и легкости добавления кнопки нового цвета с уже имеющимися стилями)
+@mixin fill-button1($color1, $color2){
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient($color2, $color1);
+
+  &::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  &:hover::after{
+    background-color: $color2;
+    opacity: 1;
+  }
+  &:active::after{
+    background-color: $color1;
+    opacity: 1;
+  }
+}
+
+@mixin stroke-button1($color1, $color2) {
+  border: solid 2px $color1;
+  &:hover{
+    border-color: transparent;
+    background-color: $color1;
+  }
+  &:active{
+    border-color: transparent;
+    background-color: $color2;
+  }
+}
+
+@mixin stroke-button2($color1, $color2){
+  border: solid 2px $color1;
+  :slotted(*) {
+    color: $color1;
+  }
+
+  &:hover{
+    border-color: transparent;
+    background-image: none;
+    background-color: $color2;
+    filter: drop-shadow(0px 0px 18px rgba($color1, 0.4));
+    will-change: transform;
+    :slotted(*){
+      color: $color-bg2;
+    }
+  }
+  &:active{
+    filter: none;
+    background-color: transparent;
+    :slotted(*){
+      color: $color1;
+    }
+    border: solid 2px $color1;
+  }
+}
+
+
+
+
 button {
   @include flex-center;
-  transition: 0.25s;
   border-radius: 50px;
   width: 236px;
   height: 48px;
+  transition: 0.25s;
+  &::after{
+    transition: 0.25s;
+  }
+  :slotted(*){
+    z-index: 1;
+  }
   &:disabled {
     cursor: no-drop;
   }
 
-
+  //В зависимости от класса присутствующего в кнопке приминяем разные стили
   &.fill{
     &.orange{
-      @include style-button('fill', $color-orange, $color-light-orange);
+      @include button-style('fill', 'orange');
     }
   }
   &.stroke{
     &.orange{
-      @include style-button('stroke', $color-orange, $color-light-orange);
+      @include button-style('stroke', 'orange');
     }
     &.blue{
-      @include style-button('stroke', $color-blue, $color-light-blue, 2);
+      @include button-style('stroke', 'blue');
     }
   }
-
 }
+
+
 
 
 
