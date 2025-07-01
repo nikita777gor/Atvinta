@@ -80,7 +80,8 @@ class ProductionService {
         console.log(productionData.production.components);
 
         // Преобразование для удобной работы на фронтенде
-        productionData.production.components.forEach((item) => productionComponentDto(item.component, item.count, item.maxCount));
+        const newComponents = productionData.production.components.map((item) => productionComponentDto(item.component, item.count, item.maxCount));
+        productionData.production.components = newComponents;
         return productionData.production;
     }
 
