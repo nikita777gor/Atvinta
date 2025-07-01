@@ -3,7 +3,7 @@ import axios from 'axios';
 import type { AxiosInstance } from "axios";
 import {UserService} from "@/services/user.service.ts";
 
-export const API_URL:string = "http://localhost:8080/api/project";
+import {API_URL} from "@/const/api/apiUrl.const.ts";
 
 export const $api:AxiosInstance = axios.create({
   baseURL: API_URL,

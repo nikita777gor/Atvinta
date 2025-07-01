@@ -23,6 +23,7 @@ const computedLinkDisabled = computed(() => {
   return coinsStore.coinsCount < coinsStore.maxCoinsCount ? false : true;
 })
 
+
 </script>
 
 <template>
@@ -61,7 +62,16 @@ const computedLinkDisabled = computed(() => {
   }
 
   &-buttons{
+    p{
+      text-align: left;
+    }
     @include flex-gap(27px);
+
+    @media (max-width: $screen-lg){
+      @include flex-items-start;
+      flex-direction: column;
+      gap: 20px
+    }
   }
 
 

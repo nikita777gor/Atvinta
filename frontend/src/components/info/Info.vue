@@ -21,8 +21,10 @@
 .info{
   @include flex-between;
 
+
+
   @media (max-width: $screen-lg){
-    @include flex-col-gap(30px);
+    @include flex-col-reverse-gap(30px);
     &-title{
       text-align: center;
     }

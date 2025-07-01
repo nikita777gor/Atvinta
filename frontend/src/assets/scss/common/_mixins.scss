@@ -1,6 +1,6 @@
 @use '@/assets/scss/common/variables' as *;
 
-//Базовые переиспользуемые миксины
+//Самые часто используемые стили миксинов
 @mixin text($weight, $size, $leading) {
   font: {
     size: $size;
@@ -9,10 +9,14 @@
   line-height: $leading;
 }
 
-//Доработать миксины
 @mixin flex-items-center{
   display: flex;
   align-items: center;
+}
+
+@mixin flex-items-start{
+  display: flex;
+  align-items: start;
 }
 
 @mixin flex-center {
@@ -36,28 +40,9 @@
   flex-direction: column;
 }
 
-
-//Переиспользуемые миксины для определенных фрагментов приложения
-@mixin components-list(){
-  @include flex-items-center();
-  justify-content: space-between;
-  flex-wrap: wrap;
-  row-gap: 40px;
+@mixin flex-col-reverse-gap($gap){
+  @include flex-gap($gap);
+  flex-direction: column-reverse;
 }
 
-@mixin components-list-item(){
-  @include flex-col-gap(34px);
-  image{
-    width: 100%;
-  }
-  div{
-    @include flex-col-gap(5px);
-    p:nth-child(2){
-      color: $color-slate;
-    }
-  }
-}
 
-@mixin preloader-color($color){
-  --uib-color: $color;
-}

@@ -1,4 +1,4 @@
-import type {EResponseStatus} from "@/types/responseStatus.types.ts";
+import type {EResponseStatus} from "@/const/enums/responseStatus.enum.ts";
 
 export interface IErrorResponse<T>{
   status: EResponseStatus,

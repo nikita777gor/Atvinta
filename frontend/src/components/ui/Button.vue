@@ -32,11 +32,16 @@ defineProps<{
 @mixin button-style($type, $color){
   @if($type == 'fill'){
     &:disabled {
-      background-color: $color-disabled;
+      background-image: none;
       :slotted(*) {
         color: $color-disabled-text;
       }
+      &::after{
+        background-color: $color-disabled;
+        opacity: 1;
+      }
     }
+
 
     @if($color == 'orange') {@include fill-button1($color-orange, $color-light-orange);}
 
@@ -46,6 +51,7 @@ defineProps<{
     border: solid 2px $color;
     &:disabled{
       border-color: $color-disabled;
+      background-image: none;
       :slotted(*){
         color: $color-disabled;
       }
@@ -70,23 +76,24 @@ defineProps<{
     opacity: 0;
   }
 
-  &:hover::after{
-    background-color: $color2;
-    opacity: 1;
-  }
-  &:active::after{
+  &:enabled:hover::after{
     background-color: $color1;
     opacity: 1;
   }
+  &:enabled:active::after{
+    background-color: $color2;
+    opacity: 1;
+  }
+
 }
 
 @mixin stroke-button1($color1, $color2) {
   border: solid 2px $color1;
-  &:hover{
+  &:enabled:hover{
     border-color: transparent;
     background-color: $color1;
   }
-  &:active{
+  &:enabled:active{
     border-color: transparent;
     background-color: $color2;
   }
@@ -98,17 +105,17 @@ defineProps<{
     color: $color1;
   }
 
-  &:hover{
+  &:enabled:hover{
     border-color: transparent;
     background-image: none;
     background-color: $color2;
     filter: drop-shadow(0px 0px 18px rgba($color1, 0.4));
     will-change: transform;
     :slotted(*){
-      color: $color-bg2;
+      color: $color-gray;
     }
   }
-  &:active{
+  &:enabled:active{
     filter: none;
     background-color: transparent;
     :slotted(*){
@@ -132,6 +139,7 @@ button {
   }
   :slotted(*){
     z-index: 1;
+    @extend .text;
   }
   &:disabled {
     cursor: no-drop;

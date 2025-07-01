@@ -8,6 +8,18 @@ export interface IMarketComponent extends IComponent {
   image: string
 }
 
-export interface IUserComponent extends IComponent {
-  sellPrice: number
+export interface IStorageComponent extends IComponent {
+  sellPrice: number,
+  count: number
+}
+
+export interface IProductionComponent{
+  _id: string,
+  icons: {
+    selectedIcon: string,
+    inStockIcon: string,
+    outStockIcon: string
+  }
+  count: number,
+  maxCount: number
 }

@@ -1,0 +1,37 @@
+@use '@/assets/scss/common' as *;
+
+.components-list{
+  @include flex-items-center;
+  justify-content: center;
+  column-gap: 154px;
+  flex-wrap: wrap;
+  row-gap: 40px;
+  @media (max-width: $screen-2xl) {
+    column-gap: 24px;
+  }
+
+  &-item{
+    width: 236px;
+    &-image{
+      @include flex-items-center;
+      width: 100%;
+      height: 236px;
+      img{
+        max-width: 100%;
+        width: auto;
+      }
+    }
+    &-content{
+      @include flex-col-gap(34px);
+    }
+    &-text{
+      @include flex-col-gap(5px);
+      @extend .info-text;
+      p:nth-child(2){
+        @extend .text;
+        color: $color-slate;
+      }
+    }
+  }
+
+}

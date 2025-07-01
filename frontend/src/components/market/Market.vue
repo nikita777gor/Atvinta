@@ -2,6 +2,10 @@
 
 import MarketList from "@/components/market/MarketList.vue";
 
+import {useMarketStore} from "@/stores/MarketStore.ts";
+
+const marketStore = useMarketStore();
+
 </script>
 
 <template>
@@ -9,7 +13,7 @@ import MarketList from "@/components/market/MarketList.vue";
   <div class="block">
     <div class="market">
       <h2 class="block-title">Рынок комплектующих</h2>
-      <MarketList/>
+      <MarketList :marketData="marketStore.marketData"/>
     </div>
   </div>
 

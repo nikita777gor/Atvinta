@@ -9,16 +9,19 @@ $color-disabled-text: #7D90A6;
 $color-text: #ffffff;
 $color-slate: #A3B8CC;
 
-$color-bg1: #26394D;
-$color-bg2: #212529;
+$color-dark-blue: #26394D;
+$color-gray: #212529;
 
 
 //Ширина экранов(стилизация через media идет черех максимальные значения переменных)
-$screen-2xl: 1900px;
+
+//Сократил 1920 до 1900 тк в некоторых браузерах подрезает пару пикселей
+$screen-2xl: 1919px;
+
 $screen-xl: 1023px;
 $screen-lg: 767px;
-$screen-md: 439px;
-$screen-sm: 319px;
+$screen-md: 438px;
+$screen-sm: 320px;
 
 
 //Значение ширины контейнеров
@@ -31,8 +34,8 @@ $container-lg: 280px;
 $containersMap: (
   max: 1016,
   #{$screen-2xl}: 756px,
-  #{$screen-xl}: 650px,
-  #{$screen-lg}: 280px
+  #{$screen-xl}: 496px,
+  #{$screen-lg}: 236px
 );
 
 

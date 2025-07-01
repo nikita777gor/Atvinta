@@ -1,14 +1,18 @@
 <script setup lang="ts">
 
 defineProps<{
-  group: string
+  group: string,
+  value: string,
 }>()
+
+
+const model = defineModel<string>()
 
 </script>
 
 <template>
   <label class="radio">
-    <input :name="group" class="radio-input" type="radio">
+    <input :value="value" v-model="model" :name="group" class="radio-input" type="radio">
     <span class="radio-text">
       <slot/>
     </span>
@@ -25,7 +29,6 @@ defineProps<{
 
   &:hover{
     input{
-      transition: 100ms;
       border-color: $color-disabled;
     }
   }
@@ -34,6 +37,7 @@ defineProps<{
     padding-left: 8px;
   }
   &-input{
+    transition: 150ms;
     cursor: pointer;
     appearance: none;
     position: relative;

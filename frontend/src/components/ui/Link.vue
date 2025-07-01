@@ -24,12 +24,12 @@ button{
     color: $color-light-orange;
     text-decoration: underline;
   }
-  &:hover{
+  &:enabled:hover{
     :slotted(*){
       color: $color-orange;
     }
   }
-  &:active{
+  &:enabled:active{
     :slotted(*){
       text-decoration: none;
     }

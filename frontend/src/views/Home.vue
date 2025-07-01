@@ -10,24 +10,28 @@ import Production from "@/components/production/Production.vue";
 import {onMounted} from "vue";
 
 import {usePreloaderStore} from "@/stores/PreloaderStore.ts";
-import {useComponentsStore} from "@/stores/ComponentsStore.ts";
+import {useMarketStore} from "@/stores/MarketStore.ts";
 import {useUserStore} from "@/stores/UserStore.ts";
 
 
 const preloaderStore = usePreloaderStore();
-const componentsStore = useComponentsStore();
+const marketStore = useMarketStore();
 const userStore = useUserStore();
 
+const preloaderQuery = async () => {
+  await userStore.getUserData();
+  await marketStore.getMarket()
+}
+
 onMounted(() => {
-  preloaderStore.changePreloaderStatus(componentsStore.getMarketComponents().then(() => {
-    userStore.getUserData()
-  }));
+  preloaderStore.changePreloaderStatus(preloaderQuery());
+
 })
 
 </script>
 
 <template>
-  <div class="background">
+  <div v-if="!preloaderStore.preloaderStatus">
     <div class="container">
       <Header/>
       <Info/>

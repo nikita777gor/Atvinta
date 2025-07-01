@@ -5,10 +5,8 @@ import PreloaderCubes from "@/components/preloader/PreloaderCubes.vue";
 </script>
 
 <template>
-  <div class="background">
-    <div class="preloader-wrapper">
-      <PreloaderCubes class="preloader-item"/>
-    </div>
+  <div class="preloader-wrapper">
+    <PreloaderCubes class="preloader-item"/>
   </div>
 
 </template>

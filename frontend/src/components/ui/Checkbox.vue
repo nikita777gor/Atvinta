@@ -24,7 +24,6 @@ const model = defineModel<boolean>();
 
   &:hover{
     input{
-      transition: 100ms;
       border-color: $color-disabled;
     }
   }
@@ -34,7 +33,7 @@ const model = defineModel<boolean>();
   }
   &-input{
     cursor: pointer;
-    transition: 100ms;
+    transition: 150ms;
     appearance: none;
     position: relative;
     width: 24px;
