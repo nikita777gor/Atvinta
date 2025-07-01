@@ -14,7 +14,7 @@ class ProductionService {
     productionPopulate = [
         {
             path: 'production.robot',
-            select: 'images type stabilizer createdPrice'
+            select: 'images type stabilizer createPrice'
         },
         {
             path: 'production.components.component',
@@ -75,7 +75,7 @@ class ProductionService {
                     'production.components': productionComponents
             },
             {new: true}
-        ).populate(this.productionPopulate).select('production -_id').lean()
+        ).populate(this.productionPopulate).select('production').lean()
 
         console.log(productionData.production.components);
 
