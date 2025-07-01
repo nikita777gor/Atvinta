@@ -12,6 +12,7 @@ class UserService {
         const user = await userModel.findById(id).lean()
             .populate({
                 path: 'production.robot',
+                select: '-components'
             })
 
         if(!user){
@@ -33,6 +34,8 @@ class UserService {
         if(!userToken){
             throw new ApiError.BadRequest(API_MESSAGES.error.user.auth);
         }
+
+
         return userToken;
     }
 

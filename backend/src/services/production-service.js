@@ -51,7 +51,9 @@ class ProductionService {
     async resetProductionComponents(userId){
         const productionData = await userModel.findOneAndUpdate({_id: userId},
             {'production.components.$[].count': 0}
-        ).select('production.components')
+        ).select('production.components');
+
+        return productionData;
     }
 
     async changeProductionRobot(userId, type, stabilizer) {
@@ -73,11 +75,13 @@ class ProductionService {
                     'production.components': productionComponents
             },
             {new: true}
-        ).populate(this.productionPopulate).select('production').lean()
+        ).populate(this.productionPopulate).select('production -_id').lean()
+
+        console.log(productionData.production.components);
 
         // Преобразование для удобной работы на фронтенде
-        const components = productionData.production.components.map((item) => productionComponentDto(item.component, item.count, item.maxCount));
-        return Object.assign(productionData.production.robot, {components});
+        productionData.production.components.forEach((item) => productionComponentDto(item.component, item.count, item.maxCount));
+        return productionData.production;
     }
 
 

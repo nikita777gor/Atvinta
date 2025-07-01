@@ -18,8 +18,8 @@ const use = () => {
         credentials: true,
     }));
 
+    app.use('/static', express.static('public'));
     app.use('/api/project', router)
-
 
     //Middleware, обрабатывающий ошибки
     app.use(errorMiddleware);

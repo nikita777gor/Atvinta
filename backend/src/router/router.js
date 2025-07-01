@@ -55,8 +55,9 @@ router.delete('/user/production/components/:componentId',
     authMiddleware,
     productionController.removeProductionComponent)
 
-
 router.all('/{*any}', (req, res, next) => {
     const err = ApiError.NotFound();
     next(err)
 })
+
+//Получение файлов
