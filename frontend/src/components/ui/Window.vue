@@ -15,17 +15,19 @@ const windowStore = useWindowStore();
       <div class="window">
         <div @click="windowStore.hideWindow()" class="window-close"></div>
         <div class="window-content">
-          <img :src="windowStore.windowData?.img" alt="window image">
-          <div>
-            <h2 class="window-content-title">{{windowStore.windowData?.title}}</h2>
-            <p class="info-text window-content-description">{{windowStore.windowData?.description}}</p>
+          <div v-if="windowStore.windowData?.img" class="window-content-image">
+            <img :src="windowStore.windowData?.img" alt="window image">
           </div>
+          <h2 class="window-content-title desktop">{{windowStore.windowData?.title}}</h2>
+          <p class="window-content-title mobile info-text">{{windowStore.windowData?.title}}</p>
+          <p class="window-content-description info-text desktop">{{windowStore.windowData?.description}}</p>
+          <p class="window-content-description mobile medium-text">{{windowStore.windowData?.description}}</p>
         </div>
       </div>
 
       <div @click="windowStore.hideWindow()" class="overlay"></div>
-
     </div>
+
 
   </Transition>
 
@@ -35,28 +37,14 @@ const windowStore = useWindowStore();
 
 <style scoped lang="scss">
 
-body{
-  overflow: hidden;
-}
-
-
-.wrapper{
-  position:fixed;
-  display:flex;
-  width:100%;
-  height:100%;
-  justify-content:center;
-  align-items:center;
-  z-index: 10;
-  background: black;
-}
-
 .overlay{
-  position: absolute;
-  height:100%;
-  width:100%;
-  z-index: 5;
-
+  background-color: rgba(17, 17, 17, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
 }
 
 .window{
@@ -68,7 +56,13 @@ body{
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 34px 100px 40px 34px;
+  padding: 34px 34px 40px 34px;
+  z-index: 30;
+
+  @media (max-width: $screen-lg) {
+    width: 236px;
+    padding: 20px 20px 30px 20px;
+  }
 
   &-close{
     position: absolute;
@@ -101,26 +95,71 @@ body{
     }
   }
 
+
   &-content{
 
-    display: flex;
-    align-items: start;
+    display: grid;
+    grid-template-columns: 43px 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 30px;
+    grid-template-areas:
+    "image title"
+    ". description";
+    @media (max-width: $screen-lg) {
+      @include flex-col-gap(10px);
+      text-align: center;
+    }
 
-    img{
-      max-width: 43px;
-      width: auto;
-      height: auto;
+    &-image{
+      @include flex-items-center;
+      img{
+        max-width: 43px;
+        width: auto;
+        height: auto;
+      }
+      grid-area: image;
     }
 
     &-title{
       color: $color-gray;
-      margin-bottom: 23px;
+      grid-area: title;
     }
     &-description{
-
       color: $color-disabled;
+      grid-area: description;
     }
+  }
+}
+
+.desktop{
+  @media (max-width: $screen-lg) {
+    display: none;
+  }
+}
+.mobile{
+  display: none;
+  @media (max-width: $screen-lg) {
+    display: block;
+  }
+}
+
+
+//Анимация появления модального окна
+.show-window-enter-active{
+  animation: show-window 0.25s;
+}
+
+.show-window-leave-active{
+  animation: show-window 0.15s reverse;
+}
+
+@keyframes show-window {
+  0%{
+    opacity: 0;
+
+  }
+  100%{
+    opacity: 1;
   }
 }
 

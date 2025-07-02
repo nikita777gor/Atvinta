@@ -1,6 +1,11 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
+
+body::-webkit-scrollbar {
+  width: 0px;
+}
+
 // Общие утилитарные стили
 .block{
   padding-bottom: 100px;

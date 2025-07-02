@@ -11,7 +11,7 @@ const preloaderStore = usePreloaderStore();
 </script>
 
 <template>
-  <div class="background app">
+  <div class="background view">
     <Transition name="show-page">
       <div v-show="!preloaderStore.preloaderStatus">
 
@@ -19,13 +19,10 @@ const preloaderStore = usePreloaderStore();
         <RouterView/>
         <Window/>
 
-
       </div>
     </Transition>
 
     <PreloaderView v-show="preloaderStore.preloaderStatus"/>
-
-
 
   </div>
 </template>
@@ -34,7 +31,7 @@ const preloaderStore = usePreloaderStore();
 
 @use '@/assets/scss/styles' as *;
 
-.app{
+.view{
   position: relative;
 }
 
@@ -54,25 +51,6 @@ const preloaderStore = usePreloaderStore();
   }
 }
 
-
-//Анимация появления модального окна
-.show-window-enter-active{
-  animation: show-window 0.2s;
-}
-
-.show-window-leave-active{
-  animation: show-window 0.15s reverse;
-}
-
-@keyframes show-window {
-  0%{
-    opacity: 0;
-
-  }
-  100%{
-    opacity: 1;
-  }
-}
 
 
 </style>

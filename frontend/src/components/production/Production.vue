@@ -4,17 +4,56 @@ import RadioButton from "@/components/ui/RadioButton.vue";
 import ProductionComponentsList from "@/components/production/ProductionComponentsList.vue";
 import Button from "@/components/ui/Button.vue";
 
-import {computed, onMounted, ref} from "vue";
+import {computed, reactive, watch} from "vue";
+
+import type {TProductionRobotStabilizer, TProductionRobotType} from "@/types/production.types.ts";
 import {coinsWordHelper} from "@/helpers/coinsWord.helper.ts";
 import {STATIC_URL} from "@/const/api/apiUrl.const.ts";
 
 import {useProductionStore} from "@/stores/ProductionStore.ts";
+import {useCoinsStore} from "@/stores/CoinsStore.ts";
+
 
 
 const productionStore = useProductionStore();
+const coinsStore = useCoinsStore();
 
 const computedCoinsWord = computed(() => {
   return coinsWordHelper(productionStore.productionRobotData!.createPrice);
+})
+
+const computedButtonDisabled = computed(() => {
+  const notMaxComponent = productionStore.productionComponents!.find((component) => {
+    return component.count !== component.maxCount;
+  })
+  if(notMaxComponent || productionStore.productionRobotData!.createPrice > coinsStore.coinsCount){
+    return true;
+  }
+  return false;
+})
+
+const computedMissingComponents = computed(() => {
+
+//   Для склонения названий в комплектующих в разные формы и числа можно сделать словарь на бекенде, в котором каждое слово будет в разных формах и числах,
+//   Ну я уже решил этим заниматься)
+
+  let missingText: string = productionStore.productionComponents!.reduce((acc, component) => {
+
+  })
+  return missingText
+
+})
+
+
+const productionSelectedRobot = reactive<{type: TProductionRobotType, stabilizer: TProductionRobotStabilizer}>({
+  type: productionStore.productionRobotData!.type,
+  stabilizer: productionStore.productionRobotData!.stabilizer
+})
+
+watch(productionSelectedRobot, () => {
+  productionStore.productionRobotData!.stabilizer = productionSelectedRobot.stabilizer;
+  productionStore.productionRobotData!.type = productionSelectedRobot.type;
+  productionStore.changeProductionRobot();
 })
 
 
@@ -34,10 +73,10 @@ const computedCoinsWord = computed(() => {
             <div class="production-select-item">
               <p class="medium-text production-select-item-title">Тип биоробота:</p>
               <div class="production-select-item-radio">
-                <RadioButton value="frontend" v-model="productionStore.productionRobotData!.type" group="type">
+                <RadioButton value="frontend" v-model="productionSelectedRobot.type" group="type">
                   <p class="second-text">FrontEnd</p>
                 </RadioButton>
-                <RadioButton value="design" v-model="productionStore.productionRobotData!.type" group="type">
+                <RadioButton value="design" v-model="productionSelectedRobot.type" group="type">
                   <p class="second-text">Design</p>
                 </RadioButton>
               </div>
@@ -45,10 +84,10 @@ const computedCoinsWord = computed(() => {
             <div class="production-select-item">
               <p class="medium-text production-select-item-title">Стабилизатор:</p>
               <div class="production-select-item-radio">
-                <RadioButton value="male" v-model="productionStore.productionRobotData!.stabilizer" group="stable">
+                <RadioButton value="male" v-model="productionSelectedRobot.stabilizer" group="stable">
                   <p class="second-text">Male</p>
                 </RadioButton>
-                <RadioButton value="famale" v-model="productionStore.productionRobotData!.stabilizer" group="stable">
+                <RadioButton value="famale" v-model="productionSelectedRobot.stabilizer" group="stable">
                   <p class="second-text">Famale</p>
                 </RadioButton>
               </div>
@@ -57,11 +96,13 @@ const computedCoinsWord = computed(() => {
 
           <div class="production-components">
             <ProductionComponentsList v-for="component of productionStore.productionComponents" :key="component._id"
+                                      :_id="component._id" :count="component.count" :max-count="component.maxCount"
+                                      :icons="component.icons"
 
             />
           </div>
 
-          <Button type="stroke" :disabled="true" color="orange">
+          <Button type="stroke" :disabled="computedButtonDisabled" color="orange">
             <p>Произвести за {{productionStore.productionRobotData!.createPrice}} {{computedCoinsWord}}</p>
           </Button>
 
@@ -72,7 +113,7 @@ const computedCoinsWord = computed(() => {
 
         </div>
 
-        <img :src="STATIC_URL + '/robots/designerFamale1.png'" alt="robot"/>
+        <img :src="STATIC_URL + productionStore.productionRobotData!.images.forbiddenCreateImg" alt="robot"/>
 
       </div>
 

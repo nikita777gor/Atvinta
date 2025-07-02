@@ -27,6 +27,7 @@
     @include flex-col-reverse-gap(30px);
     &-title{
       text-align: center;
+      margin-bottom: 0;
     }
     &-description{
       display: none;

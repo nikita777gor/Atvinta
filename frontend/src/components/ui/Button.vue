@@ -138,7 +138,6 @@ button {
     transition: 0.25s;
   }
   :slotted(*){
-    z-index: 1;
     @extend .text;
   }
   &:disabled {
