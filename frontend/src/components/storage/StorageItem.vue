@@ -48,19 +48,20 @@ defineProps<IStorageComponent>()
 }
 
 .increment-enter-active{
-  animation: count 0.4s ease-in;
+  animation: count 0.4s ease-in ;
 }
 .decrement-enter-active{
   animation: count 0.4s reverse ease-in;
 }
 .increment-leave-active, .decrement-leave-active{
   position: absolute;
-  width: 100%;
+  height: 100%;
 }
 
 @keyframes count{
   0%{
     transform: translateY(0px);
+    opacity: 1;
   }
   40%{
     transform: translateY(30px);

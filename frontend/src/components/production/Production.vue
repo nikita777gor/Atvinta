@@ -88,56 +88,59 @@ const computedMissingProductionText = computed(() => {
 
         <PreloaderBlock class="production-preloader" v-if="productionStore.productionPreloaderStatus"/>
 
-        <div v-else class="production-content">
-          <div class="production-main">
+        <Transition name="show-production">
 
-            <div class="production-select">
-              <div class="production-select-item">
-                <p class="medium-text production-select-item-title">Тип биоробота:</p>
-                <div class="production-select-item-radio">
-                  <RadioButton value="frontend" @change="productionStore.changeProductionRobot()" v-model="productionStore.productionRobotData.type" group="type">
-                    <p class="second-text">FrontEnd</p>
-                  </RadioButton>
-                  <RadioButton value="design" @change="productionStore.changeProductionRobot()" v-model="productionStore.productionRobotData.type" group="type">
-                    <p class="second-text">Design</p>
-                  </RadioButton>
+          <div v-if="!productionStore.productionPreloaderStatus" class="production-content">
+            <div class="production-main">
+
+              <div class="production-select">
+                <div class="production-select-item">
+                  <p class="medium-text production-select-item-title">Тип биоробота:</p>
+                  <div class="production-select-item-radio">
+                    <RadioButton value="frontend" @change="productionStore.changeProductionRobot()" v-model="productionStore.productionRobotData.type" group="type">
+                      <p class="second-text">FrontEnd</p>
+                    </RadioButton>
+                    <RadioButton value="design" @change="productionStore.changeProductionRobot()" v-model="productionStore.productionRobotData.type" group="type">
+                      <p class="second-text">Design</p>
+                    </RadioButton>
+                  </div>
+                </div>
+                <div class="production-select-item">
+                  <p class="medium-text production-select-item-title">Стабилизатор:</p>
+                  <div class="production-select-item-radio">
+                    <RadioButton value="male" @change="productionStore.changeProductionRobot()" v-model="productionStore.productionRobotData.stabilizer" group="stable">
+                      <p class="second-text">Male</p>
+                    </RadioButton>
+                    <RadioButton value="famale" @change="productionStore.changeProductionRobot()" v-model="productionStore.productionRobotData.stabilizer" group="stable">
+                      <p class="second-text">Famale</p>
+                    </RadioButton>
+                  </div>
                 </div>
               </div>
-              <div class="production-select-item">
-                <p class="medium-text production-select-item-title">Стабилизатор:</p>
-                <div class="production-select-item-radio">
-                  <RadioButton value="male" @change="productionStore.changeProductionRobot()" v-model="productionStore.productionRobotData.stabilizer" group="stable">
-                    <p class="second-text">Male</p>
-                  </RadioButton>
-                  <RadioButton value="famale" @change="productionStore.changeProductionRobot()" v-model="productionStore.productionRobotData.stabilizer" group="stable">
-                    <p class="second-text">Famale</p>
-                  </RadioButton>
-                </div>
+
+              <div class="production-components">
+                <ProductionComponentsList v-for="component of productionStore.productionComponents" :key="component._id"
+                                          :_id="component._id" :setStatuses="component.setStatuses" :name="component.name"
+                                          :icons="component.icons"
+
+                />
               </div>
+
+              <Button @click="productionStore.createProductionRobot()" type="stroke" :disabled="computedCreateButtonDisabled" color="orange">
+                <p>Произвести за {{productionStore.productionRobotData.createPrice}} {{computedCoinsWord}}</p>
+              </Button>
+
+              <p v-if="computedCreateButtonDisabled" class="second-text text-slate">
+                {{computedMissingProductionText}}
+              </p>
+
             </div>
 
-            <div class="production-components">
-              <ProductionComponentsList v-for="component of productionStore.productionComponents" :key="component._id"
-                                        :_id="component._id" :setStatuses="component.setStatuses" :name="component.name"
-                                        :icons="component.icons"
-
-              />
-            </div>
-
-            <Button @click="productionStore.createProductionRobot()" type="stroke" :disabled="computedCreateButtonDisabled" color="orange">
-              <p>Произвести за {{productionStore.productionRobotData.createPrice}} {{computedCoinsWord}}</p>
-            </Button>
-
-            <p v-if="computedCreateButtonDisabled" class="second-text text-slate">
-              {{computedMissingProductionText}}
-            </p>
+            <div :style="{backgroundImage: `url(${STATIC_URL + productionStore.productionRobotData.images})`}"
+                 class="production-robot-image" :class="computedRobotImageClass"></div>
 
           </div>
-
-          <div :style="{backgroundImage: `url(${STATIC_URL + productionStore.productionRobotData.images})`}"
-               class="production-robot-image" :class="computedRobotImageClass"></div>
-
-        </div>
+        </Transition>
 
       </div>
 
@@ -182,7 +185,7 @@ const computedMissingProductionText = computed(() => {
 
   &-main{
     display: grid;
-    grid-template-columns: 236px 2fr;
+    grid-template-columns: 236px 467px;
     gap: 24px;
     @media (max-width: $screen-2xl) {
       grid-template-columns: 236px 236px;
@@ -219,6 +222,21 @@ const computedMissingProductionText = computed(() => {
     gap: 16px;
   }
 
+}
+
+.show-production-enter-active{
+  animation: show-page 0.3s ease-out;
+}
+
+@keyframes show-production {
+  0%{
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 

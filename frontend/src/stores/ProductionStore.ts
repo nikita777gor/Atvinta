@@ -69,12 +69,12 @@ export const useProductionStore = defineStore('ProductionStore', () => {
   const changeProductionRobot = async () => {
     try{
       if(!productionRobotData.value) throw Error;
-
       productionPreloaderStatus.value = true;
-      const {data} = await ProductionService.changeProductionRobot(productionRobotData.value.type, productionRobotData.value.stabilizer);
 
       // Возвращение компонентов в хранилище при смене вида робота
       returnProductionComponents()
+
+      const {data} = await ProductionService.changeProductionRobot(productionRobotData.value.type, productionRobotData.value.stabilizer);
 
       productionRobotData.value = data.data.robot;
       productionComponents.value = data.data.components;

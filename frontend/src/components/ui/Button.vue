@@ -84,6 +84,11 @@ defineProps<{
     background-color: $color2;
     opacity: 1;
   }
+  &:hover, &:disabled{
+    :slotted(*){
+      z-index: 1;
+    }
+  }
 
 }
 
@@ -140,16 +145,8 @@ button {
   :slotted(*){
     @extend .text;
   }
-  &:hover{
-    :slotted(*){
-      z-index: 1;
-    }
-  }
   &:disabled {
     cursor: no-drop;
-    :slotted(*){
-      z-index: 1;
-    }
   }
 
   //В зависимости от класса присутствующего в кнопке приминяем разные стили

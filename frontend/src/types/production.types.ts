@@ -13,3 +13,5 @@ export interface IProductionRobot {
   type: TProductionRobotType,
 }
 
+export type TProductionItemStatus = 'set' | 'unset' | 'stock';
+

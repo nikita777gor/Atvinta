@@ -45,7 +45,10 @@ const coinsStore = useCoinsStore();
 
 .wallet-coins{
   margin-bottom: 24px;
-  height: 100px;
+  height: 40px;
+  @media (max-width: $screen-lg) {
+    height: 100px;
+  }
   &-wrapper{
     position: relative;
   }

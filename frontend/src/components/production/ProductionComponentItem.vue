@@ -1,30 +1,39 @@
 <script setup lang="ts">
 
 import {computed} from "vue";
+import type {TProductionItemStatus} from "@/types/production.types.ts";
 import {useProductionStore} from "@/stores/ProductionStore.ts";
 
 
 const props = defineProps<{
   _id: string,
   index: number,
-  setStatus: boolean,
-  stockStatus: boolean,
+  status: TProductionItemStatus,
   icons: string
 }>()
 
 const productionStore = useProductionStore();
 
 const computedItemImageClass = computed(() => {
-  if(props.setStatus) return 'set-icon';
-  if(!props.setStatus && props.stockStatus) return 'stock-icon';
+  if(props.status === 'set') return 'set-icon';
+  if(props.status === 'stock') return 'stock-icon';
   return 'unset-icon'
 })
 
 
+const handleItemClick = () => {
+  if(props.status === 'set'){
+    productionStore.removeProductionComponent(props._id, props.index);
+  }
+  if(props.status === 'stock'){
+    productionStore.addProductionComponent(props._id, props.index);
+  }
+}
+
 </script>
 
 <template>
-  <div @click="setStatus ? productionStore.removeProductionComponent(_id, index) : productionStore.addProductionComponent(_id, index)"
+  <div @click="handleItemClick()"
     :style="{backgroundImage: `url(${icons})`}" class="production-component-item" :class="computedItemImageClass"></div>
 </template>
 
@@ -44,6 +53,7 @@ const computedItemImageClass = computed(() => {
 }
 .unset-icon{
   background-position: -96px -0;
+  cursor: no-drop;
 }
 
 </style>
