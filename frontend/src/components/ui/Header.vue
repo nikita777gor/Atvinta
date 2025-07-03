@@ -8,8 +8,8 @@ import Button from "@/components/ui/Button.vue";
   <div class="block">
     <div class="header">
       <img class="header-logo" src="/logo/Logo.png" alt="logo">
-      <Button class="test" :disabled="false" type="stroke" color="orange" @event="() => console.log('click')">
-        <p class="text">Произвести биоробота</p>
+      <Button class="test" :disabled="false" type="stroke" color="orange">
+        <p>Произвести биоробота</p>
       </Button>
     </div>
   </div>

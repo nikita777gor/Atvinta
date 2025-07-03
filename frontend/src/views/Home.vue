@@ -12,11 +12,13 @@ import {onMounted} from "vue";
 import {usePreloaderStore} from "@/stores/PreloaderStore.ts";
 import {useMarketStore} from "@/stores/MarketStore.ts";
 import {useUserStore} from "@/stores/UserStore.ts";
+import {useProductionStore} from "@/stores/ProductionStore.ts";
 
 
 const preloaderStore = usePreloaderStore();
 const marketStore = useMarketStore();
 const userStore = useUserStore();
+const productionStore = useProductionStore();
 
 const preloaderQuery = async () => {
   await userStore.getUserData();
@@ -25,7 +27,6 @@ const preloaderQuery = async () => {
 
 onMounted(() => {
   preloaderStore.changePreloaderStatus(preloaderQuery());
-
 })
 
 </script>

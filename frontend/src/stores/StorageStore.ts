@@ -41,9 +41,15 @@ export const useStorageStore = defineStore('StorageStore', () => {
   const changeStorageComponentCount = (componentId: string, count: number) => {
     storageComponentAnimation.value = count > 0 ? 'increment' : 'decrement';
     const componentIndex = storageData.value.findIndex((component) => component._id === componentId);
-    if(componentIndex !== -1){
-      storageData.value[componentIndex].count += count;
+    if(componentIndex === -1) return
+
+    const component = storageData.value[componentIndex];
+
+    if(component.count + count < 0){
+      throw new Error('Не хватает количества комплектующих на складе');
     }
+    storageData.value[componentIndex].count += count;
+
   }
 
 
@@ -53,6 +59,7 @@ export const useStorageStore = defineStore('StorageStore', () => {
     storageData,
 
     buyStorageComponent,
-    sellStorageComponent
+    sellStorageComponent,
+    changeStorageComponentCount
   }
 })

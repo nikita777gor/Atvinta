@@ -22,6 +22,8 @@ const coinsStore = useCoinsStore();
 
 <style scoped lang="scss">
 
+//Решил сделать реализцию через scss без использования js, так как была такая рекомендация в ТЗ
+
 @use 'sass:math';
 
 //Миксин смещения монет и их переноса на другую строчку в зависимости от размеров экрана
@@ -34,18 +36,16 @@ const coinsStore = useCoinsStore();
     $multipleContainer: math.ceil(calc($containerValue / $coinWidth)) * $coinWidth;
 
     left: #{$left - math.floor(calc($left / $multipleContainer)) * $multipleContainer}px;
-    top: #{math.floor(calc($left / $containerValue)) * 28}px
+    top: #{math.floor(calc($left / $multipleContainer)) * 28}px
   }@else{
     left: #{$left}px;
   }
 }
 
+
 .wallet-coins{
-  margin-bottom: 20px;
-  height: 40px;
-  @media(max-width: $screen-lg){
-    height: 60px;
-  }
+  margin-bottom: 24px;
+  height: 100px;
   &-wrapper{
     position: relative;
   }

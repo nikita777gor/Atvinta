@@ -19,6 +19,7 @@
   align-items: start;
 }
 
+
 @mixin flex-center {
   @include flex-items-center;
   justify-content: center;
@@ -27,7 +28,6 @@
 @mixin flex-between {
   @include flex-items-center;
   justify-content: space-between;
-
 }
 
 @mixin flex-gap($gap) {

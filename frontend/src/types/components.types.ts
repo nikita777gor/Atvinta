@@ -13,13 +13,8 @@ export interface IStorageComponent extends IComponent {
   count: number
 }
 
-export interface IProductionComponent{
-  _id: string,
-  icons: {
-    selectedIcon: string,
-    inStockIcon: string,
-    outStockIcon: string
-  }
-  count: number,
-  maxCount: number
+
+export interface IProductionComponent extends IComponent {
+  icons: string,
+  setStatuses: boolean[],
 }

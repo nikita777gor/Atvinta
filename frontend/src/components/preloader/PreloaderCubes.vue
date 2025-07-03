@@ -32,6 +32,9 @@
   width: calc(var(--uib-size) * 0.2);
   height: calc(var(--uib-size) * 0.2);
   animation: jump var(--uib-speed) ease-in-out infinite;
+
+
+
 }
 
 .cube-inner {
