@@ -71,6 +71,20 @@ class UserComponentsService {
         return toggledComponents.storage;
     }
 
+    async bulkWriteUserComponents(userId, componentId, count){
+        const insertComponents = await userModel.bulkWrite([
+            {
+                updateMany: {
+
+                }
+            },
+            {
+                insertMany: {
+
+                }
+            }
+        ])
+    }
 
     async buyUserComponent(userId, componentId){
 
