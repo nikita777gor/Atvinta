@@ -104,7 +104,7 @@ export const useProductionStore = defineStore('ProductionStore', () => {
     }catch(err){
       console.log(err);
     }finally {
-      productionPreloaderStatus.value = true;
+      productionPreloaderStatus.value = false;
     }
   }
 

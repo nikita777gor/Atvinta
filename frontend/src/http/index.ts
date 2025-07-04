@@ -27,7 +27,7 @@ $api.interceptors.response.use((config) => {
     windowStore.showWindow({
       img: '/icons/apiError.png',
       title: 'Ошибка работы с сервером',
-      description: 'Не корректное соединение или слишком много запросов, обновите страницу и проверьте скорость подключения к интернету'
+      description: 'Обновите страницу и проверьте скорость подключения'
     })
     throw error;
   }

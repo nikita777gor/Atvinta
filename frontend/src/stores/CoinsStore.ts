@@ -25,63 +25,48 @@ export const useCoinsStore = defineStore('coinsStore', () => {
       if(farmCoinsTimeOut){
         clearTimeout(farmCoinsTimeOut);
       }
-      if(coinsCount.value + count > maxCoinsCount){
-        windowStore.showWindow({
-          img: '/icons/coin.png',
-          title: 'Количество монет ограничено',
-          description: 'Вы не можете нацыганить более 100 монет biorobo'
-        })
 
-        throw new Error('Количество монет ограничено')
-      }
-      coinsCount.value += count;
+      await increaseCoinsCount(count);
       newCoinsCount.value += count;
 
-
-      // Сделать что если количество при клике выдает ошибку о переборе коинов отправлялся запрос на 5 коинов меньше
-
       farmCoinsTimeOut = setTimeout(async () => {
-        console.log('NEW COINS: ' + newCoinsCount.value);
-        const coins = await CoinsService.changeCoinsCount(newCoinsCount.value)
+        const queryCoinsCount = newCoinsCount.value;
         newCoinsCount.value = 0;
+        const coins = await CoinsService.changeCoinsCount(queryCoinsCount);
         console.log(coins);
-      }, 5000)
+
+      }, 600)
     }catch(err){
       console.log(err);
     }
   }
 
-  // Методы по работе с коинами из вне
-
-  const increaseCoinsCountSync = (count:number) => {
-
-    console.log('BUY - NEW COINS: ' + newCoinsCount.value)
-    // Отправка запроса на изменение монет в случае если таймаут по накликаным коинам не успеет уйти а пользователь будет взаиомдействовать с балансом
-    if(newCoinsCount.value){
-      clearTimeout(farmCoinsTimeOut);
-      CoinsService.changeCoinsCount(newCoinsCount.value).then((data) => {
-        newCoinsCount.value = 0;
-        console.log(data);
-      })
-
-    }
-
+  const increaseCoinsCount = async (count:number) => {
     if(coinsCount.value + count > maxCoinsCount){
       windowStore.showWindow({
         img: '/icons/coin.png',
         title: 'Количество монет ограничено',
         description: 'Вы не можете нацыганить более 100 монет biorobo'
       })
-
+      if(newCoinsCount.value){
+        clearTimeout(farmCoinsTimeOut);
+        const {data} = await CoinsService.changeCoinsCount(newCoinsCount.value);
+        console.log(data);
+        newCoinsCount.value = 0;
+      }
       throw new Error('Количество монет ограничено')
     }
     coinsCount.value += count;
+
   }
 
-  const decreaseCoinsCountSync = (count:number) => {
+  const decreaseCoinsCount = async (count:number) => {
     if(coinsCount.value - count < 0) throw new Error('Не хватает монет');
     coinsCount.value -= count;
   }
+
+
+
 
 
 
@@ -90,8 +75,8 @@ export const useCoinsStore = defineStore('coinsStore', () => {
     coinsCount,
 
     changeCoinsCount,
-    increaseCoinsCountSync,
-    decreaseCoinsCountSync
+    increaseCoinsCount,
+    decreaseCoinsCount
 
   }
 
