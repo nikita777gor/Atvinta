@@ -17,7 +17,7 @@ export const useStorageStore = defineStore('StorageStore', () => {
 
   const buyStorageComponent = async (componentId: string, price: number) => {
     try{
-      await coinsStore.decreaseCoinsCount(price);
+      coinsStore.decreaseCoinsCount(price);
       changeStorageComponentCount(componentId, 1);
       const {data} = await StorageService.buyStorageComponent(componentId);
       console.log(data);

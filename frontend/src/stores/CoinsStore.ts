@@ -60,7 +60,7 @@ export const useCoinsStore = defineStore('coinsStore', () => {
 
   }
 
-  const decreaseCoinsCount = async (count:number) => {
+  const decreaseCoinsCount = (count:number) => {
     if(coinsCount.value - count < 0) throw new Error('Не хватает монет');
     coinsCount.value -= count;
   }

@@ -96,6 +96,7 @@ export const useProductionStore = defineStore('ProductionStore', () => {
       await ProductionService.createProductionRobot();
       clearProductionComponents();
 
+      coinsStore.decreaseCoinsCount(productionRobotData.value.createPrice);
       windowStore.showWindow({
         title: 'Биоробот произведен',
         description: 'Поздравляем!\n' + 'Вы произвели биоробота'
